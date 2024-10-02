@@ -1,0 +1,36 @@
+def input_float(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Valor inválido. Por favor, informe um número.")
+
+def criar_usuario(usuarios):
+    while True:
+        cpf = input("Informe o CPF (somente número): ")
+        if not cpf.isdigit() or len(cpf) != 11:
+            print("CPF inválido. Deve conter 11 dígitos.")
+            continue
+        usuario = filtrar_usuario(cpf, usuarios)
+        if usuario:
+            print("\n@@@ Já existe usuário com esse CPF! @@@")
+            return
+        break
+
+    nome = input("Informe o nome completo: ")
+    data_nascimento = input("Informe a data de nascimento (dd-mm-aaaa): ")
+    endereco = input("Informe o endereço: ")
+    usuarios.append({"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco})
+    print("=== Usuário criado com sucesso! ===")
+
+def main():
+    # ... (rest of your code)
+    while True:
+        opcao = menu()
+        if opcao == "d":
+            valor = input_float("Informe o valor do depósito: ")
+            saldo, extrato = depositar(saldo, valor, extrato)
+        elif opcao == "s":
+            valor = input_float("Informe o valor do saque: ")
+            saldo, extrato = sacar(saldo=saldo, valor=valor, extrato=extrato, limite=limite, numero_saques=numero_saques, limite_saques=LIMITE_SAQUES)
+        # ... (rest of your code)
